@@ -44,7 +44,7 @@ app.post('/transfer',function(req,res){
 app.get('/payment',function(req,res){
     res.render('payment',{account:accounts.credit})
 });
-app.post('/paymment',function(req,res){
+app.post('/payment',function(req,res){
     accounts.credit.balance -= req.body.amount;
     accounts.credit.available += parseInt(req.body.amount,10);
     const accountsJSON =JSON.stringify(accounts,null,4);
