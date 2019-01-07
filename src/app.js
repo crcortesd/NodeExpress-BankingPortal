@@ -42,14 +42,14 @@ app.post('/transfer',function(req,res){
     res.render('transfer',{message:'Transfer Completed'});
 })
 app.get('/payment',function(req,res){
-    res.render('payment',{account:account.credit})
+    res.render('payment',{account:accounts.credit})
 });
 app.post('/paymment',function(req,res){
     accounts.credit.balance -= req.body.amount;
     accounts.credit.available += parseInt(req.body.amount,10);
     const accountsJSON =JSON.stringify(accounts,null,4);
     fs.writeFileSync(path.join(__dirname,'json/accounts.json'),accountsJSON,'utf8');
-    res.render('payment',{message: 'Payment Succesful',accounts: accounts.credit});
+    res.render('payment',{message: 'Payment Succesful',account: accounts.credit});
 })
 app.listen(3000,function(){
     console.log('PS Project Running on port 3000!');
